@@ -1,0 +1,221 @@
+﻿<html>
+<head>
+    <title>My first Babylon.js app</title>
+    <script src="babylon.js"></script>
+    <script src="castorGUI.min.js"></script>
+    <script src="droplet.js"></script>
+    
+    <style>
+        html, body, div, canvas {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas"></canvas>
+  
+    <script>
+        if (BABYLON.Engine.isSupported()) {
+          
+            
+            ////////set up///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var canvas = document.getElementById("canvas");
+            var css = "button {cursor:pointer;}";
+            var guisystem = new CASTORGUI.GUIManager(canvas, css);
+            var engine = new BABYLON.Engine(canvas, true);
+            var scene = new BABYLON.Scene(engine);
+            
+            var textField1 = {
+                x: 10,
+                y: 10,
+                value: "",
+                placeholder: "Concentration for drop #1"
+               
+            };
+
+            var textField2 = {
+                x: 10,
+                y: 40,
+                value: "",
+                placeholder: "Volume for drop #1"
+
+            };
+
+            var textField3 = {
+                x: 200,
+                y: 10,
+                value: "",
+                placeholder: "Concentration for drop #2"
+
+            };
+
+            var textField4 = {
+                x: 200,
+                y: 40,
+                value: "",
+                placeholder: "Volume for drop #2"
+
+            };
+
+            var textField5 = {
+                x: 400,
+                y: 10,
+                value: "",
+                placeholder: "Concentration for drop #3"
+
+            };
+
+            var textField6 = {
+                x: 400,
+                y: 40,
+                value: "",
+                placeholder: "Volume for drop #3"
+
+            };
+
+            var textField7 = {
+                x: 600,
+                y: 10,
+                value: "",
+                placeholder: "Concentration for drop #4"
+
+            };
+
+            var textField8 = {
+                x: 600,
+                y: 40,
+                value: "",
+                placeholder: "Volume for drop #4"
+
+            };
+
+            var textField9 = {
+                x: 800,
+                y: 10,
+                value: "",
+                placeholder: "Concentration for drop #5"
+
+            };
+
+            var textField10 = {
+                x: 800,
+                y: 40,
+                value: "",
+                placeholder: "Volume for drop #5"
+
+            };
+
+            var textFieldSpecify = {
+                x: 10,
+                y: 100,
+                value: "",
+                placeholder: "Desired # of drops"
+            }
+
+            var textDesiredC = {
+                x: 10,
+                y: 200,
+                value: "",
+                placeholder: "Desired drop concentration"
+            }
+
+            var textDesiredV = {
+                x: 10,
+                y: 230,
+                value: "",
+                placeholder: "Desired drop volume"
+            }
+
+            var button = {
+                w: 100,
+                h: 30,
+                x: 1000,
+                y: 10,
+                value: "generate"
+
+            };
+
+            var button1 = {
+                w: 100,
+                h: 30,
+                x: 1200,
+                y: 10,
+                value: "check"
+
+            };
+
+            var myField1 = new CASTORGUI.GUITextfield("entry1", textField1, guisystem, true);
+            var myField2 = new CASTORGUI.GUITextfield("entry2", textField2, guisystem, true);
+            var myField3 = new CASTORGUI.GUITextfield("entry3", textField3, guisystem, true);
+            var myField4 = new CASTORGUI.GUITextfield("entry4", textField4, guisystem, true);
+            var myField5 = new CASTORGUI.GUITextfield("entry5", textField5, guisystem, true);
+            var myField6 = new CASTORGUI.GUITextfield("entry6", textField6, guisystem, true);
+            var myField7 = new CASTORGUI.GUITextfield("entry7", textField7, guisystem, true);
+            var myField8 = new CASTORGUI.GUITextfield("entry8", textField8, guisystem, true);
+            var myField9 = new CASTORGUI.GUITextfield("entry9", textField9, guisystem, true);
+            var myField10 = new CASTORGUI.GUITextfield("entry10", textField10, guisystem, true);
+
+            var myField11 = new CASTORGUI.GUITextfield("entry11", textFieldSpecify, guisystem, true);
+
+            var myField12 = new CASTORGUI.GUITextfield("entry12", textDesiredC, guisystem, true);
+            var myField13 = new CASTORGUI.GUITextfield("entry13", textDesiredV, guisystem, true);
+
+
+
+            
+            var myButton = new CASTORGUI.GUIButton("calcButton", button, guisystem, generate);
+            var myButton1 = new CASTORGUI.GUIButton("resetButton", button1, guisystem, checkPossible);
+
+            var word = "alright";
+
+            var camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(40, 10, -60), scene);
+            camera.attachControl(canvas, false);
+
+            var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+            var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 0, 1), scene);
+
+          
+           
+
+            ////////////////////////functions//////////////////////////////////////
+        
+    
+      /////////////////////plane setup///////////////////////////   
+            var plane = BABYLON.Mesh.CreatePlane("plane", 20, scene);
+
+            plane.checkCollisions = false;
+            plane.scaling = new BABYLON.Vector3(4, 1, 1);
+
+            var material2 = new BABYLON.StandardMaterial("mat", scene);
+            material2.diffuseColor = new BABYLON.Color3(0, 0.3, 2);
+
+            plane.material = material2;
+            plane.position.x = 80 / 2;
+            plane.position.y = 20 / 2;
+
+            
+
+            
+            var renderLoop = function () {
+                // game loop
+                scene.render();
+                //if (rad1.isChecked()) { console.log("welp"); }
+
+            };
+
+
+
+
+            engine.runRenderLoop(renderLoop);
+
+        }
+
+        
+        
+    </script>
+</body>
+</html>
